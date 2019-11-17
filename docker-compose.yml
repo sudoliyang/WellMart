@@ -3,10 +3,9 @@ version: '3.7'
 services:
   db:
     image: postgres:10.10
-    environment:
-      - POSTGRES_USER=ly
-      - POSTGRES_PASSWORD=ly123
+    user: postgres
     volumes:
+      - .:/usr/src/app
       - postgres_data:/var/lib/postgresql/data/
 
   adminer:
