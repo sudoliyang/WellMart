@@ -1,0 +1,30 @@
+version: '3.7'
+
+services:
+  db:
+    image: postgres:10.10
+    environment:
+      - POSTGRES_USER=ly
+      - POSTGRES_PASSWORD=ly123
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+
+  adminer:
+    image: adminer:4.7.5
+    ports:
+      - 8080:8080
+
+  app:
+    build:
+      context: ./
+      dockerfile: ./dockerfiles/app.dockerfile
+    command: python /usr/src/app/manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/usr/src/app
+    ports:
+      - 8000:8000
+    depends_on:
+      - db
+
+volumes:
+  postgres_data:
