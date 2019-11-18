@@ -6,11 +6,19 @@ Step 1: Creating the database and corresponding user account for the project
 Step 2: Setup the privilege in the database.
 	
 	Run the following command:
-        docker-compose exec db psql -U demo_admin demo_db -f /usr/src/app/schema/setup_db.sql
-
+        docker-compose exec db psql demo_db -f /usr/src/app/schema/setup_db.sql
 
 Step 3: Create the table with django 
 
 	Run the following command:
-        python manag.py migrate
+        docker-compose exec app python manage.py migrate
 
+Step 4: Grant table privilege to the users.
+
+	Run the following command:
+        docker-compose exec db psql demo_db -f /usr/src/app/schema/grant_table_privilege.sql
+
+Step 5: Add Test Data
+
+	Run the following command:
+        docker-compose exec db psql demo_db -f /usr/src/app/schema/testing_data.sql
