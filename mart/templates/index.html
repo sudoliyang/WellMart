@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+{% load django_tables2 %}
+
+{% block content %}
+    {% if messages %}
+        {% for msg in messages %}
+            <div class="alert alert-{{ msg.tags }}" role="alert">
+                {{ msg.message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+    <div class="form-group">
+        {% crispy form %}
+    </div>
+    <h3>商品資料</h3>
+    {% render_table product_table %}
+    <h3>訂單資料</h3>
+    {% render_table order_table %}
+    <h3>TOP 3</h3>
+    <pre>
+    <ul class="list-group">
+        {% for product in top_three_product %}
+            {% if product.total > 0 %}
+                <li class="list-group-item">商品 id: {{ product.pk }}, 一共賣了 {{ product.total }}</li>
+            {% else %}
+                <li class="list-group-item">從缺</li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+    </pre>
+{% endblock %}
