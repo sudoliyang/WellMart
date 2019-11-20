@@ -10,6 +10,7 @@ pylint = "*"
 django = "*"
 psycopg2 = "*"
 django-crispy-forms = "*"
+django-tables2-bootstrap4 = "==2.0.0b5"
 
 [requires]
 python_version = "3.6"
