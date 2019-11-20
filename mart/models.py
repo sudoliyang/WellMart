@@ -1,4 +1,5 @@
 from django.db import models
+from mart.managers import ProductManager
 
 
 class Product(models.Model):
@@ -14,6 +15,8 @@ class Product(models.Model):
     price = models.IntegerField()
     shop_id = models.CharField(max_length=255)
     vip = models.BooleanField(default=False)
+
+    objects = ProductManager()
 
     def __str__(self):
         return f"{self.product_id}"
