@@ -1,3 +1,13 @@
+Install
+	Run the following command:
+        docker-compose pull && docker-compose build
+
+Start Services
+	Run the following command:
+        docker-compose up
+
+Setup Database
+
 Step 1: Creating the database and corresponding user account for the project
 	
 	Run the following command:
